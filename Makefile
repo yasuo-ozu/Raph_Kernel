@@ -38,9 +38,7 @@ image:
 	make umount
 
 $(IMAGE):
-	make umount
-	dd if=/dev/zero of=$(IMAGE) bs=1M count=20
-	parted -s $(IMAGE) mklabel msdos -- mkpart primary 2048s -1
+	sh disk.sh make-diskimage
 	sh disk.sh grub-install
 
 cpimg: image

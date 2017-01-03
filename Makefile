@@ -38,6 +38,7 @@ image:
 	make umount
 
 $(IMAGE):
+	make umount
 	sh disk.sh make-diskimage
 	sh disk.sh grub-install
 

@@ -6,14 +6,14 @@ sudo mkdir -p $TMPDIR
 
 umount() {
     sudo umount ${MOUNT_DIR}
-    sudo kpartx -d ${$TMPDIR/$IMAGE}
+    sudo kpartx -d $TMPDIR/$IMAGE
     [ -f $IMAGE ] && sudo rm $IMAGE
     sudo cp $TMPDIR/$IMAGE $IMAGE
     sudo losetup -d /dev/loop[0-9] > /dev/null 2>&1 || return 0
 }
 
 loopsetup() {
-    set -- $(sudo kpartx -av ${$TMPDIR/$IMAGE})
+    set -- $(sudo kpartx -av $TMPDIR/$IMAGE)
     LOOPDEVICE=$8
     MAPPEDDEVICE=/dev/mapper/$3
 }
